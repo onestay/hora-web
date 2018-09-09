@@ -14,4 +14,10 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
+  rules: {
+    'no-tabs': "off",
+    "indent": ["error", "tab"],
+    "no-plusplus":"off",
+    "class-methods-use-this": "off"
+  }
 };
