@@ -10,7 +10,11 @@
 		</div>
 		<div class="navbar-menu">
 			<div class="navbar-end">
-				<router-link to='/login' class="navbar-item">
+				<router-link :to='`/user/${user.id}`' class="navbar-item" v-if="isLoggedIn">
+					<b-icon icon="account" size="is-small"/>
+					<span>{{ user.displayName }}</span>
+				</router-link>
+				<router-link to='/login' class="navbar-item" v-else>
 					<b-icon icon="login-variant" size="is-small"/>
 					<span>Login</span>
 				</router-link>
@@ -18,6 +22,19 @@
 		</div>
 	</nav>
 </template>
+<script>
+export default {
+	computed: {
+		isLoggedIn() {
+			return this.$store.state.isLoggedIn;
+		},
+		user() {
+			return this.$store.state.user;
+		},
+	},
+};
+</script>
+
 <style scoped>
 .logo-text {
 	padding-left: 0.5rem;

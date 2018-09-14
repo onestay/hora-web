@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "^2.7.94",
+    "axios": "^0.18.0",
     "buefy": "^0.6.7",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",

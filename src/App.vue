@@ -8,6 +8,16 @@
 import Navbar from './components/Navbar.vue';
 
 export default {
+	beforeCreate() {
+		let auth = localStorage.getItem('auth');
+		if (auth) {
+			auth = JSON.parse(auth);
+			this.$http.post('/auth/verify')
+				.then((res) => {
+					this.$store.commit('login', res.data);
+				});
+		}
+	},
 	components: {
 		'h-navbar': Navbar,
 	},
@@ -22,6 +32,7 @@ export default {
 	$twitch:#6441A4;
 	$twitch-invert: findColorInvert($twitch);
 
+	$card-background-color: #f9f6f6;
 	$colors: (
 		"primary": ($primary, $primary-invert),
 		"twitch": ($twitch, $primary-invert),
