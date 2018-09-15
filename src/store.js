@@ -14,6 +14,7 @@ export default new Vuex.Store({
 			state.user = user;
 		},
 		logout(state) {
+			localStorage.removeItem('auth');
 			state.isLoggedIn = false;
 			state.user = {};
 		},

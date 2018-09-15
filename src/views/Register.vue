@@ -7,16 +7,17 @@
 					<p class="subtitle is-5">Register for free</p>
 
 					<b-field label="Username" :type="username.error" :message="username.errorMessage">
-						<b-input v-model="username.value" rounded @blur="validate('username')"/>
+						<b-input v-model="username.value" rounded @blur="validate('username')" icon="account"/>
 					</b-field>
 
 					<b-field label="Email" :type="email.error" :message="email.errorMessage">
-						<b-input type="email" v-model="email.value" rounded @blur="validate('email')"/>
+						<b-input type="email" v-model="email.value" rounded
+							@blur="validate('email')" icon="email"/>
 					</b-field>
 
 					<b-field label="Password" :type="password.error" :message="password.errorMessage">
 						<b-input type="password" v-model="password.value"
-						rounded @blur="validate('password')" />
+							rounded @blur="validate('password')" icon="lock" :password-reveal="true"/>
 					</b-field>
 					<div class="is-size-6 has-text-weight-semibold is-italic error">{{ error }}</div>
 					<button class="button is-primary"
@@ -141,11 +142,11 @@ export default {
 	margin: 1rem auto;
 }
 .register>h6 {
-	margin-top: 1.5rem;
+	margin-top: 1rem;
 }
 @media only screen and (max-width: 600px){
 	.card {
-		max-width: 90%;
+		max-width: 100%;
 		margin: 0 auto;
 	}
 }

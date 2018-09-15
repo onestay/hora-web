@@ -15,6 +15,9 @@ export default {
 			this.$http.post('/auth/verify')
 				.then((res) => {
 					this.$store.commit('login', res.data);
+				})
+				.catch((e) => {
+					console.error(`Error during verify: ${e}`);
 				});
 		}
 	},

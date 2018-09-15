@@ -10,21 +10,25 @@ if (auth) {
 	axios.defaults.headers.common.Authorization = `Bearer ${auth.token}`;
 }
 
-axios.interceptors.response.use(null, (err) => {
-	console.log('interceptor called');
-	console.log(err.response);
+axios.interceptors.response.use(null, err => new Promise((resolve, reject) => {
 	if (err.response && err.response.status === 401 && err.response.data.message.includes('jwt expired')) {
-		axios.post('/auth/refresh', { refreshToken: JSON.parse(localStorage.getItem('auth')).refreshToken })
+		const { refreshToken } = JSON.parse(localStorage.getItem('auth'));
+		axios.post('/auth/refresh', { refreshToken })
 			.then((res) => {
 				axios.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
 				err.config.headers.Authorization = `Bearer ${res.data.token}`;
-				return axios.request(err.config);
+				localStorage.setItem('auth', JSON.stringify({
+					refreshToken,
+					token: res.data.token,
+				}));
+
+				resolve(axios(err.config));
 			})
 			.catch((e) => {
 				console.error(`Error refreshing token: ${e}`);
 			});
+	} else {
+		reject(err);
 	}
-
-	return Promise.reject(err);
-});
+}));
 export default axios;

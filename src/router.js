@@ -17,11 +17,30 @@ export default new Router({
 			path: '/register',
 			name: 'register',
 			component: () => import('./views/Register.vue'),
+			beforeEnter: (to, from, next) => {
+				if (localStorage.getItem('auth')) {
+					return next({ name: 'home' });
+				}
+
+				return next();
+			},
 		},
 		{
 			path: '/user/:id',
 			name: 'user',
 			component: () => import('./views/User.vue'),
+		},
+		{
+			path: '/login',
+			name: 'login',
+			component: () => import('./views/Login.vue'),
+			beforeEnter: (to, from, next) => {
+				if (localStorage.getItem('auth')) {
+					return next({ name: 'home' });
+				}
+
+				return next();
+			},
 		},
 	],
 });

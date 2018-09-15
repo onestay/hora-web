@@ -7,13 +7,23 @@
 					<span class="is-size-2 logo-text">Hora</span>
 				</div>
 			</div>
+			<div class="navbar-burger"
+				@click="() => navbarToggle = !navbarToggle" :class="{ 'is-active': navbarToggle }">
+				<span aria-hidden="true"/>
+				<span aria-hidden="true"/>
+				<span aria-hidden="true"/>
+			</div>
 		</div>
-		<div class="navbar-menu">
+		<div class="navbar-menu" :class="{ 'is-active': navbarToggle }">
 			<div class="navbar-end">
 				<router-link :to='`/user/${user.id}`' class="navbar-item" v-if="isLoggedIn">
 					<b-icon icon="account" size="is-small"/>
 					<span>{{ user.displayName }}</span>
 				</router-link>
+				<a role="button" class="navbar-item" v-if="isLoggedIn" @click="logout">
+					<b-icon icon="logout" size="is-small"/>
+					<span>Logout</span>
+				</a>
 				<router-link to='/login' class="navbar-item" v-else>
 					<b-icon icon="login-variant" size="is-small"/>
 					<span>Login</span>
@@ -24,12 +34,23 @@
 </template>
 <script>
 export default {
+	data() {
+		return {
+			navbarToggle: false,
+		};
+	},
 	computed: {
 		isLoggedIn() {
 			return this.$store.state.isLoggedIn;
 		},
 		user() {
 			return this.$store.state.user;
+		},
+	},
+	methods: {
+		logout() {
+			this.$store.commit('logout');
+			this.$router.push({ name: 'home' });
 		},
 	},
 };

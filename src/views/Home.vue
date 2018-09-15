@@ -11,15 +11,15 @@
 				<div class="tile is-parent">
 					<div class="tile">
 						<article>
-						<p class="title is-3">About</p>
-						<p>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-							Praesent tellus. Vestibulum nunc
-							felis, venenatis sed, ultrices non, fermentum
-							a, ipsum. Suspendisse a odio vitae tellus
-							dignissim pharetra. Vivamus ligula diam, imperdiet ut,
-							pulvinar sed, malesuada et, massa. Pellentesque ut wisi.
-						</p>
+							<p class="title is-3">About</p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+								Praesent tellus. Vestibulum nunc
+								felis, venenatis sed, ultrices non, fermentum
+								a, ipsum. Suspendisse a odio vitae tellus
+								dignissim pharetra. Vivamus ligula diam, imperdiet ut,
+								pulvinar sed, malesuada et, massa. Pellentesque ut wisi.
+							</p>
 						</article>
 					</div>
 					<div class="tile is-1" />
@@ -38,12 +38,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="has-text-centered">
-				<h4 class="title is-4 proceed">To proceed either</h4>
+			<div class="has-text-centered proceed">
+				<h4 class="title is-4 proceed">To proceed</h4>
 				<button class="button is-primary button-margin" @click="navigate('register')">
 					Register
 				</button>
-				<button class="button is-twitch">Register with Twitch</button>
 			</div>
 		</div>
 	</div>
@@ -60,10 +59,7 @@ export default {
 
 <style scoped>
 .proceed {
-	margin-top: 5rem;
-}
-.button-margin {
-	margin-right: 3rem;
+	margin-top: 3rem;
 }
 </style>
 
