@@ -42,5 +42,16 @@ export default new Router({
 				return next();
 			},
 		},
+		{
+			path: '/event',
+			name: 'event',
+			component: () => import('./views/Event/Event.vue'),
+			children: [
+				{
+					path: 'create',
+					component: () => import('./views/Event/CreateEvent.vue'),
+				},
+			],
+		},
 	],
 });

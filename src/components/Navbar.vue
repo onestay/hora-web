@@ -15,15 +15,46 @@
 			</div>
 		</div>
 		<div class="navbar-menu" :class="{ 'is-active': navbarToggle }">
+			<div class="navbar-start">
+				<router-link to="/" class="navbar-item">
+					<b-icon icon="home" />
+					<span>Home</span>
+				</router-link>
+
+				<div class="navbar-item has-dropdown is-hoverable" v-if="isLoggedIn">
+					<a class="navbar-link">Events</a>
+
+					<div class="navbar-dropdown">
+						<a class="navbar-item">Speedcon</a>
+						<a class="navbar-item">GSM</a>
+						<hr class="navbar-divider">
+						<router-link to="/event/create" class="navbar-item">
+							<b-icon icon="plus" />
+							<span>Create event</span>
+						</router-link>
+					</div>
+
+				</div>
+				<div class="navbar-item has-dropdown is-hoverable" v-if="isLoggedIn">
+					<a class="navbar-link">Schedules</a>
+					<div class="navbar-dropdown">
+						<a class="navbar-item">Speedcon</a>
+						<a class="navbar-item">GSM</a>
+					</div>
+				</div>
+
+			</div>
 			<div class="navbar-end">
 				<router-link :to='`/user/${user.id}`' class="navbar-item" v-if="isLoggedIn">
 					<b-icon icon="account" size="is-small"/>
 					<span>{{ user.displayName }}</span>
 				</router-link>
+
 				<a role="button" class="navbar-item" v-if="isLoggedIn" @click="logout">
 					<b-icon icon="logout" size="is-small"/>
 					<span>Logout</span>
 				</a>
+
 				<router-link to='/login' class="navbar-item" v-else>
 					<b-icon icon="login-variant" size="is-small"/>
 					<span>Login</span>
